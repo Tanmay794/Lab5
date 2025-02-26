@@ -18,9 +18,12 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install --upgrade pip
-          pip install matplotlib numpy opencv-python matplotlib scikit-learn
+          pip install matplotlib numpy opencv-python scikit-learn
 
-      - name: Run test script inside virtual environment
+      - name: Verify script location
+        run: ls -R   # Debugging step
+
+      - name: Run test script
         run: |
           source venv/bin/activate
-          python test_script.py
+          python test_script.py  # Update the path if needed
