@@ -1,29 +1,16 @@
 name: Run Tests
 on: [push]
-
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: Install dependencies in a virtual environment
+      - name: Install dependencies
         run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip
-          pip install matplotlib numpy opencv-python scikit-learn
-
-      - name: Verify script location
-        run: ls -R   # Debugging step
-
+          pip install numpy pandas scikit-learn opencv-python matplotlib
       - name: Run test script
-        run: |
-          source venv/bin/activate
-          python test_script.py  # Update the path if needed
+        run: python test_script.py
